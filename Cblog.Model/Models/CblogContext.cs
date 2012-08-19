@@ -1,9 +1,16 @@
+// ----------------------------------------------------------------------
+// <copyright file="CblogContext.cs" company="">
+//  CblogContext
+// </copyright>
+// <author>Vladimir Ciobanu</author>
+// ----------------------------------------------------------------------
+
 namespace Cblog.Model.Models
 {
     using System.Data.Entity;
     using Cblog.Model.Models.Mapping;
 
-    public class CblogContext : DbContext
+    public class CblogContext : DbContext, IContext
     {
         static CblogContext()
         {
@@ -15,17 +22,18 @@ namespace Cblog.Model.Models
 		{
 		}
 
-        public DbSet<UserProfile> UserProfiles { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<OAuthUser> OAuthUsers { get; set; }
+        public DbSet<UserProfile> Users { get; set; }
+        public DbSet<Membership> Membership { get; set; }
+        public DbSet<OAuthMembership> OAuthMembership { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new UserProfileMap());
-            modelBuilder.Configurations.Add(new webpages_MembershipMap());
-            modelBuilder.Configurations.Add(new webpages_OAuthMembershipMap());
-            modelBuilder.Configurations.Add(new webpages_RolesMap());
+            modelBuilder.Configurations.Add(new MembershipMap());
+            modelBuilder.Configurations.Add(new OAuthMembershipMap());
+            modelBuilder.Configurations.Add(new RoleMap());
         }
     }
 }

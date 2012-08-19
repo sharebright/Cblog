@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Globalization;
-using System.Web.Security;
+﻿// ----------------------------------------------------------------------
+// <copyright file="AccountModels.cs" company="">
+//  AccountModels
+// </copyright>
+// <author>Vladimir Ciobanu</author>
+// ----------------------------------------------------------------------
 
 namespace Cblog.Web.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity;
+
     public class UsersContext : DbContext
     {
         public UsersContext()

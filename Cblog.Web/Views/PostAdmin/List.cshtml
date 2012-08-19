@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null;
+}
+
+<input type="text" ng-model="search" class="search-query" placeholder="Search">
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th><a href="#/new">add</a></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="post in posts | filter:search | orderBy:'CreatedAt':reverse=true">
+    <td>{{post.Title}}</td>
+    <td>{{post.Content}}</td>
+    <td>
+      <a href="#/edit/{{post.PostId}}">edit</a>
+    </td>
+  </tr>
+  </tbody>
+</table>

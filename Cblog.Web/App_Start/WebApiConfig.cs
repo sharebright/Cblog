@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿// ----------------------------------------------------------------------
+// <copyright file="WebApiConfig.cs" company="">
+//  WebApiConfig
+// </copyright>
+// <author>Vladimir Ciobanu</author>
+// ----------------------------------------------------------------------
 
 namespace Cblog.Web
 {
+    using System.Web.Http;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)

@@ -1,30 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿// ----------------------------------------------------------------------
+// <copyright file="HomeController.cs" company="">
+//  HomeController
+// </copyright>
+// <author>Vladimir Ciobanu</author>
+// ----------------------------------------------------------------------
 
 namespace Cblog.Web.Controllers
 {
+    using System.Web.Mvc;
+
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            return View();
+        }
 
+        public ActionResult List()
+        {
+            return View();
+        }
+
+        public ActionResult Read()
+        {
             return View();
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
             return View();
         }

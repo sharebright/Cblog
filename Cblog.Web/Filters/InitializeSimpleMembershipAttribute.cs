@@ -1,13 +1,20 @@
-﻿using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Threading;
-using System.Web.Mvc;
-using WebMatrix.WebData;
-using Cblog.Web.Models;
+﻿// ----------------------------------------------------------------------
+// <copyright file="InitializeSimpleMembershipAttribute.cs" company="">
+//  InitializeSimpleMembershipAttribute
+// </copyright>
+// <author>Vladimir Ciobanu</author>
+// ----------------------------------------------------------------------
 
 namespace Cblog.Web.Filters
 {
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    using System.Threading;
+    using System.Web.Mvc;
+    using Cblog.Web.Models;
+    using WebMatrix.WebData;
+
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public sealed class InitializeSimpleMembershipAttribute : ActionFilterAttribute
     {
@@ -38,7 +45,7 @@ namespace Cblog.Web.Filters
                         }
                     }
 
-                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("CblogContext", "UserProfile", "UserId", "UserName", autoCreateTables: true);
                 }
                 catch (Exception ex)
                 {

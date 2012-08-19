@@ -46,10 +46,6 @@
       <Project>{0c0a25de-816f-40df-a53b-cbdd6e5ab156}</Project>
       <Name>Cblog.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Cblog.Repository\Cblog.Repository.csproj">
-      <Project>{64098c00-e979-4848-a9c5-243e77b5a0c9}</Project>
-      <Name>Cblog.Repository</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Cblog.Web\Cblog.Web.csproj">
       <Project>{e93c8195-7d8b-424c-8c51-879f6120a70a}</Project>
       <Name>Cblog.Web</Name>

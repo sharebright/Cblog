@@ -1,3 +1,10 @@
+// ----------------------------------------------------------------------
+// <copyright file="Configuration.cs" company="">
+//  Configuration
+// </copyright>
+// <author>Vladimir Ciobanu</author>
+// ----------------------------------------------------------------------
+
 namespace Cblog.Model.Migrations
 {
     using System;

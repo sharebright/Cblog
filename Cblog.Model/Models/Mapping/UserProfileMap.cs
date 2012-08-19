@@ -1,8 +1,15 @@
-using System.ComponentModel.DataAnnotations;
-using System.Data.Entity.ModelConfiguration;
+// ----------------------------------------------------------------------
+// <copyright file="UserProfileMap.cs" company="">
+//  UserProfileMap
+// </copyright>
+// <author>Vladimir Ciobanu</author>
+// ----------------------------------------------------------------------
 
 namespace Cblog.Model.Models.Mapping
 {
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.ModelConfiguration;
+
     public class UserProfileMap : EntityTypeConfiguration<UserProfile>
     {
         public UserProfileMap()

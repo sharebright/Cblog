@@ -1,20 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Transactions;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
-using DotNetOpenAuth.AspNet;
-using Microsoft.Web.WebPages.OAuth;
-using WebMatrix.WebData;
-using Cblog.Web.Filters;
-using Cblog.Web.Models;
+﻿// ----------------------------------------------------------------------
+// <copyright file="AccountController.cs" company="">
+//  AccountController
+// </copyright>
+// <author>Vladimir Ciobanu</author>
+// ----------------------------------------------------------------------
 
 namespace Cblog.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Transactions;
+    using System.Web.Mvc;
+    using System.Web.Security;
+    using Cblog.Web.Filters;
+    using Cblog.Web.Models;
+    using DotNetOpenAuth.AspNet;
+    using Microsoft.Web.WebPages.OAuth;
+    using WebMatrix.WebData;
+
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
@@ -81,6 +86,12 @@ namespace Cblog.Web.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
+                    if (model.UserName == "cvlad")
+                    {
+                        if (!Roles.RoleExists("admin"))
+                            Roles.CreateRole("admin");
+                        Roles.AddUserToRole(model.UserName, "admin");
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)

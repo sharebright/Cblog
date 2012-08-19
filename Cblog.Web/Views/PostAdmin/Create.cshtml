@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+<h2>Create post</h2>
+
+<form name="postEditForm">
+    <div ng-class="{error: postEditForm.title.$invalid}">
+        <label>Title</label>
+        <input type="text" name="title" ng-model="post.Title" required />
+        <span ng-show="postEditForm.title.$error.required">Required</span>
+    </div>
+
+    <div ng-class="{error: postEditForm.content.$invalid}">
+        <label>Content</label>
+        <textarea name="content" ng-model="post.Content"></textarea>
+    </div>
+
+    <a href="#/">Cancel</a>
+    <button ng-click="save()" ng-disabled="isClean() || postEditForm.$invalid">Save</button>
+    <button ng-click="destroy()" ng-show="post.PostId">Delete</button>
+</form>

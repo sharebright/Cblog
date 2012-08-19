@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Index";
+    ViewBag.NgApp = "posts";
+}
+
+<h2>Posts</h2>
+
+<div ng-view></div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/Scripts/PostAdmin/posts.js")
+@Scripts.Render("~/Scripts/PostAdmin/postdb.js")
+}

@@ -44,19 +44,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201208191420060_AspnetMembership.cs" />
-    <Compile Include="Migrations\201208191420060_AspnetMembership.Designer.cs">
-      <DependentUpon>201208191420060_AspnetMembership.cs</DependentUpon>
+    <Compile Include="IContext.cs" />
+    <Compile Include="Migrations\201208191750527_SimpleMembership.cs" />
+    <Compile Include="Migrations\201208191750527_SimpleMembership.Designer.cs">
+      <DependentUpon>201208191750527_SimpleMembership.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201208192113486_Posts.cs" />
+    <Compile Include="Migrations\201208192113486_Posts.Designer.cs">
+      <DependentUpon>201208192113486_Posts.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CblogContext.cs" />
+    <Compile Include="Models\Mapping\PostMap.cs" />
     <Compile Include="Models\Mapping\UserProfileMap.cs" />
-    <Compile Include="Models\Mapping\webpages_MembershipMap.cs" />
-    <Compile Include="Models\Mapping\webpages_OAuthMembershipMap.cs" />
-    <Compile Include="Models\Mapping\webpages_RolesMap.cs" />
+    <Compile Include="Models\Mapping\MembershipMap.cs" />
+    <Compile Include="Models\Mapping\OAuthMembershipMap.cs" />
+    <Compile Include="Models\Mapping\RoleMap.cs" />
+    <Compile Include="Models\Post.cs" />
     <Compile Include="Models\UserProfile.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\OAuthUser.cs" />
+    <Compile Include="Models\Membership.cs" />
+    <Compile Include="Models\OAuthMembership.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,8 +71,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201208191420060_AspnetMembership.resx">
-      <DependentUpon>201208191420060_AspnetMembership.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201208191750527_SimpleMembership.resx">
+      <DependentUpon>201208191750527_SimpleMembership.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201208192113486_Posts.resx">
+      <DependentUpon>201208192113486_Posts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
