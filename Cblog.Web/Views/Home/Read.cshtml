@@ -3,7 +3,8 @@
 }
 
 <h3>{{post.Title}}</h3>
+<div>Posted by {{post.Author}} at {{post.Date}}</div>
 
-<div>{{post.Content}}</div>
+<div ng-bind-html="post.Content"></div>
 
 <a href="#/">Back</a>

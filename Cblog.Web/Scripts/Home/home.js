@@ -1,4 +1,4 @@
-﻿angular.module('home', ['postdb'])
+﻿angular.module('home', ['ngSanitize', 'blogdb'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', { controller: PostsListCtrl, templateUrl: '/Home/List' })
@@ -6,10 +6,10 @@
             .otherwise({ redirectTo: '/' });
     });
 
-function PostsListCtrl($scope, PostDb) {
-    $scope.posts = PostDb.query();
+function PostsListCtrl($scope, BlogDb) {
+    $scope.posts = BlogDb.query();
 }
 
-function PostsReadCtrl($scope, $routeParams, $location, PostDb) {
-    $scope.post = PostDb.get({ id: $routeParams.postId });
+function PostsReadCtrl($scope, $routeParams, $location, BlogDb) {
+    $scope.post = BlogDb.get({ id: $routeParams.postId });
 }

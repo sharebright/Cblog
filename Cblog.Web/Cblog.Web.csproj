@@ -176,6 +176,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\Bootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostAdminController.cs" />
     <Compile Include="Controllers\PostController.cs" />
@@ -260,6 +261,7 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\Home\blogdb.js" />
     <Content Include="Scripts\Home\home.js" />
     <Content Include="Scripts\i18n\angular-locale_am-et.js" />
     <Content Include="Scripts\i18n\angular-locale_am.js" />
@@ -489,6 +491,10 @@
     <ProjectReference Include="..\Cblog.Model\Cblog.Model.csproj">
       <Project>{0c0a25de-816f-40df-a53b-cbdd6e5ab156}</Project>
       <Name>Cblog.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cblog.Service\Cblog.Service.csproj">
+      <Project>{4cb8314a-51a0-4337-8f2a-95e4e1bb4ec0}</Project>
+      <Name>Cblog.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

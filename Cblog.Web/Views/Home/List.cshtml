@@ -2,8 +2,8 @@
     Layout = null;
 }
 
-<div ng-repeat="post in posts | orderBy:'CreatedAt':reverse=true">
-    <h3><a href="#/blog/{{post.PostId}}">{{post.Title}}</a></h3>
-    <div>{{post.Content}}</div>
-    <div>Posted at {{post.CreatedAt}}</div>
+<div ng-repeat="post in posts">
+    <h3><a href="#/blog/{{post.Id}}">{{post.Title}}</a></h3>
+    <div ng-bind-html="post.Content"></div>
+    <div>Posted at {{post.Date}} by {{post.Author}}</div>
 </div>

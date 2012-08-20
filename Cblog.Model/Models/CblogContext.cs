@@ -22,11 +22,11 @@ namespace Cblog.Model.Models
 		{
 		}
 
-        public DbSet<UserProfile> Users { get; set; }
-        public DbSet<Membership> Membership { get; set; }
-        public DbSet<OAuthMembership> OAuthMembership { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Post> Posts { get; set; }
+        public IDbSet<UserProfile> Users { get; set; }
+        public IDbSet<Membership> Membership { get; set; }
+        public IDbSet<OAuthMembership> OAuthMembership { get; set; }
+        public IDbSet<Role> Roles { get; set; }
+        public IDbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

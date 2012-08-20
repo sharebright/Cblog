@@ -17,11 +17,11 @@ namespace Cblog.Model
         DbEntityEntry Entry(object entity);
         DbContextConfiguration Configuration { get; }
 
-        DbSet<UserProfile> Users { get; set; }
-        DbSet<Membership> Membership { get; set; }
-        DbSet<OAuthMembership> OAuthMembership { get; set; }
-        DbSet<Role> Roles { get; set; }
-        DbSet<Post> Posts { get; set; }
+        IDbSet<UserProfile> Users { get; set; }
+        IDbSet<Membership> Membership { get; set; }
+        IDbSet<OAuthMembership> OAuthMembership { get; set; }
+        IDbSet<Role> Roles { get; set; }
+        IDbSet<Post> Posts { get; set; }
 
         int SaveChanges();
     }
