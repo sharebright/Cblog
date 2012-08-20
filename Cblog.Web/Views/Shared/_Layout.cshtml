@@ -1,45 +1,38 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="@ViewBag.NgApp">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="@ViewBag.NgApp"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="@ViewBag.NgApp"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="@ViewBag.NgApp"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="@ViewBag.NgApp"> <!--<![endif]-->
     <head>
         <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="description" content="@ViewBag.Description" />
         <meta name="viewport" content="width=device-width" />
+
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+
         <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("cblog", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("PostAdmin", "Index", "PostAdmin")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
+            <nav>
+                @Html.Partial("_NavigationPartial")
+            </nav>
+            <section>
+                @Html.Partial("_LoginPartial")
             </section>
-        </div>
+        </header>
+
+        <section id="body">
+            @RenderBody()
+        </section>
+
         <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-                </div>
-            </div>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
         </footer>
 
         @Scripts.Render("~/bundles/jquery")
