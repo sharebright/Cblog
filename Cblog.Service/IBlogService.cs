@@ -7,11 +7,12 @@
 
 namespace Cblog.Service
 {
+    using System;
     using System.Collections.Generic;
 
-    public interface IBlogService
+    public interface IBlogService : IDisposable
     {
         IEnumerable<FormattedPost> All();
-        FormattedPost Single(int id);
+        FormattedPost Single(string slug);
     }
 }

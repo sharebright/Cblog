@@ -24,9 +24,9 @@ namespace Cblog.Service
             markdown_ = new Markdown();
         }
 
-        public FormattedPost Single(int id)
+        public FormattedPost Single(string slug)
         {
-            var post = context_.Posts.Single(p => p.PostId == id);
+            var post = context_.Posts.Single(p => p.UrlTitle == slug);
             return FormatPost(post);
 
         }
@@ -42,11 +42,29 @@ namespace Cblog.Service
             {
                 Id = p.PostId,
                 Title = p.Title,
+                Slug = p.UrlTitle,
                 Author = p.User.UserName,
                 Date = p.CreatedAt.ToShortDateString(),
                 Content = markdown_.Transform(p.Content)
             };
             return fp;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (context_ != null)
+                {
+                    context_.Dispose();
+                    context_ = null;
+                }
+            }
+        }
+
+        public void Dispose()
+        {
+            context_.Dispose();
         }
 
         private IContext context_;

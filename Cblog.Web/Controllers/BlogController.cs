@@ -7,6 +7,7 @@
 
 namespace Cblog.Web.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Web.Http;
     using Cblog.Model.Models;
@@ -31,9 +32,26 @@ namespace Cblog.Web.Controllers
             return service_.All();
         }
 
-        public FormattedPost GetBlog(int id)
+        //public FormattedPost GetBlog(int id)
+        //{
+        //    return service_.Single(id);
+        //}
+
+        protected override void Dispose(bool disposing)
         {
-            return service_.Single(id);
+            if (disposing)
+            {
+                if (service_ != null)
+                {
+                    service_.Dispose();
+                    service_ = null;
+                }
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
         }
     }
 }

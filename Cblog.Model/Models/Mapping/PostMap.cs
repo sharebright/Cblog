@@ -26,6 +26,10 @@ namespace Cblog.Model.Models.Mapping
                 .IsRequired()
                 .IsMaxLength();
 
+            this.Property(p => p.UrlTitle)
+                .IsRequired()
+                .IsMaxLength();
+
             // Table & Column Mappings
             this.ToTable("Posts");
             this.Property(p => p.PostId).HasColumnName("PostId");

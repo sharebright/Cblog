@@ -9,7 +9,7 @@
 @foreach (var post in Model)
 {
 <article>  
-    <h1>@Html.ActionLink(post.Title, "blog", new { id = post.Id } )</h1>
+    <h1>@Html.ActionLink(post.Title, "blog", new { slug = post.Slug} )</h1>
     <div>Posted by @post.Author at @post.Date</div>
     @Html.Raw(post.Content)
 </article>

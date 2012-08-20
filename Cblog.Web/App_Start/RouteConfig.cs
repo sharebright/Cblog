@@ -18,8 +18,8 @@ namespace Cblog.Web
 
             routes.MapRoute(
                 name: "Blog",
-                url: "blog/{id}",
-                defaults: new { controller = "Home", action = "Blog", id = UrlParameter.Optional }
+                url: "blog/{slug}",
+                defaults: new { controller = "Home", action = "Blog", slug = UrlParameter.Optional }
             );
 
             routes.MapRoute(

@@ -17,37 +17,31 @@ namespace Cblog.Web.Controllers
     using System.Web.Http;
     using Cblog.Model;
     using Cblog.Model.Models;
+    using Cblog.Service;
     using Cblog.Web.Filters;
 
     public class PostController : ApiController
     {
-        private IContext db_;
+        private IPostService postService_;
 
         public PostController() : this(null)
         { }
 
-        public PostController(IContext ctx)
+        public PostController(IPostService ps)
         {
-            db_ = ctx ?? new CblogContext();
-            db_.Configuration.ProxyCreationEnabled = false;
+            postService_ = ps ?? new PostService(new CblogContext());
         }
 
         // GET api/Post
         public IEnumerable<Post> GetPosts()
         {
-            return db_.Posts.OrderByDescending(p => p.CreatedAt).AsEnumerable();
+            return postService_.GetPosts();
         }
 
         // GET api/Post/5
         public Post GetPost(int id)
         {
-            Post post = db_.Posts.Find(id);
-            if (post == null)
-            {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-            }
-
-            return post;
+            return postService_.GetPost(id);
         }
 
         // PUT api/Post/5
@@ -56,11 +50,9 @@ namespace Cblog.Web.Controllers
         {
             if (ModelState.IsValid && id == post.PostId)
             {
-                db_.Entry(post).State = EntityState.Modified;
-
                 try
                 {
-                    db_.SaveChanges();
+                    postService_.Update(id, post);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -81,11 +73,7 @@ namespace Cblog.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                post.CreatedAt = DateTime.Now;
-                post.UserId = db_.Users.Single(u => u.UserName == this.User.Identity.Name).UserId;
-
-                db_.Posts.Add(post);
-                db_.SaveChanges();
+                postService_.Create(post, this.User.Identity.Name);
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, post);
                 response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = post.PostId }));
@@ -101,29 +89,21 @@ namespace Cblog.Web.Controllers
         [Authorize(Roles = "admin")]
         public HttpResponseMessage DeletePost(int id)
         {
-            Post post = db_.Posts.Find(id);
-            if (post == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-
-            db_.Posts.Remove(post);
-
             try
             {
-                db_.SaveChanges();
+                postService_.Delete(id);
             }
             catch (DbUpdateConcurrencyException)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, post);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db_.Dispose();
+            postService_.Dispose();
             base.Dispose(disposing);
         }
     }

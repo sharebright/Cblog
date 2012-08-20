@@ -29,9 +29,9 @@ using Cblog.Service;
             return View(blogs);
         }
 
-        public ActionResult Blog(int id)
+        public ActionResult Blog(string slug)
         {
-            var post = blogService_.Single(id);
+            var post = blogService_.Single(slug);
             return View(post);
         }
 

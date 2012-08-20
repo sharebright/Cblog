@@ -51,8 +51,11 @@
     <Compile Include="IBlogService.cs" />
     <Compile Include="BlogService.cs" />
     <Compile Include="IMarkdownService.cs" />
+    <Compile Include="IPostService.cs" />
     <Compile Include="MarkdownService.cs" />
+    <Compile Include="PostService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Slugify\Slugify.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -25,10 +25,10 @@ namespace Cblog.Tests.Service
             // Arrange
             var fakeBlogs = new FakeDbSet<Post>
             {
-                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now, Title = "First post", Content = "Content of the First post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 2, UserId = 1, CreatedAt = DateTime.Now, Title = "Second post", Content = "Content of the Second post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 3, UserId = 1, CreatedAt = DateTime.Now, Title = "Third post", Content = "Content of the Third post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 4, UserId = 2, CreatedAt = DateTime.Now, Title = "Fourth post", Content = "Content of the Fourth post", User = new UserProfile() { UserName = "cvlad" } }
+                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now, Title = "First post", UrlTitle = "first-post", Content = "Content of the First post", User = new UserProfile() { UserName = "cvlad" } },
+                new Post { PostId = 2, UserId = 1, CreatedAt = DateTime.Now, Title = "Second post", UrlTitle = "second-post", Content = "Content of the Second post", User = new UserProfile() { UserName = "cvlad" } },
+                new Post { PostId = 3, UserId = 1, CreatedAt = DateTime.Now, Title = "Third post", UrlTitle = "third-post", Content = "Content of the Third post", User = new UserProfile() { UserName = "cvlad" } },
+                new Post { PostId = 4, UserId = 2, CreatedAt = DateTime.Now, Title = "Fourth post", UrlTitle = "fourth-post",  Content = "Content of the Fourth post", User = new UserProfile() { UserName = "cvlad" } }
             };
             var expected = fakeBlogs.ElementAt(1);
 
@@ -38,7 +38,7 @@ namespace Cblog.Tests.Service
             var service = new BlogService(context.Object);
 
             // Act
-            var blog = service.Single(expected.PostId);
+            var blog = service.Single(expected.UrlTitle);
 
             // Assert
             blog.Id.Should().Be(expected.PostId);
@@ -54,10 +54,10 @@ namespace Cblog.Tests.Service
             // Arrange
             var fakeBlogs = new FakeDbSet<Post>
             {
-                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now, Title = "First post", Content = "Content of the First post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 2, UserId = 1, CreatedAt = DateTime.Now, Title = "Second post", Content = "Content of the Second post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 3, UserId = 1, CreatedAt = DateTime.Now, Title = "Third post", Content = "Content of the Third post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 4, UserId = 2, CreatedAt = DateTime.Now, Title = "Fourth post", Content = "Content of the Fourth post", User = new UserProfile() { UserName = "cvlad" } }
+                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now, Title = "First post", UrlTitle = "first-post", Content = "Content of the First post", User = new UserProfile() { UserName = "cvlad" } },
+                new Post { PostId = 2, UserId = 1, CreatedAt = DateTime.Now, Title = "Second post", UrlTitle = "second-post", Content = "Content of the Second post", User = new UserProfile() { UserName = "cvlad" } },
+                new Post { PostId = 3, UserId = 1, CreatedAt = DateTime.Now, Title = "Third post", UrlTitle = "third-post", Content = "Content of the Third post", User = new UserProfile() { UserName = "cvlad" } },
+                new Post { PostId = 4, UserId = 2, CreatedAt = DateTime.Now, Title = "Fourth post", UrlTitle = "fourth-post",  Content = "Content of the Fourth post", User = new UserProfile() { UserName = "cvlad" } }
             };
 
             var context = new Mock<IContext>();
@@ -80,7 +80,7 @@ namespace Cblog.Tests.Service
 
             var fakeBlogs = new FakeDbSet<Post>
             {
-                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now, Title = "First post", Content = markdownString, User = new UserProfile() { UserName = "cvlad" } },
+                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now, Title = "First post", UrlTitle = "first-post", Content = markdownString, User = new UserProfile() { UserName = "cvlad" } },
             };
 
             var markdown = new Markdown();
@@ -93,7 +93,7 @@ namespace Cblog.Tests.Service
             var service = new BlogService(context.Object);
 
             // Act
-            var actual = service.Single(expected.PostId);
+            var actual = service.Single(expected.UrlTitle);
 
             // Assert
             actual.Content.Should().Be(expectedContent);
@@ -105,10 +105,10 @@ namespace Cblog.Tests.Service
             // Arrange
             var fakeBlogs = new FakeDbSet<Post>
             {
-                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now.Subtract(TimeSpan.FromDays(5)), Title = "First post", Content = "Content of the First post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 2, UserId = 1, CreatedAt = DateTime.Now.Subtract(TimeSpan.FromDays(1)), Title = "Second post", Content = "Content of the Second post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 3, UserId = 1, CreatedAt = DateTime.Now, Title = "Third post", Content = "Content of the Third post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 4, UserId = 2, CreatedAt = DateTime.Now.Subtract(TimeSpan.FromDays(2)), Title = "Fourth post", Content = "Content of the Fourth post", User = new UserProfile() { UserName = "cvlad" } }
+                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now.Subtract(TimeSpan.FromDays(5)), Title = "First post", UrlTitle = "first-post", Content = "Content of the First post", User = new UserProfile() { UserName = "cvlad" } },
+                new Post { PostId = 2, UserId = 1, CreatedAt = DateTime.Now.Subtract(TimeSpan.FromDays(1)), Title = "Second post", UrlTitle = "second-post", Content = "Content of the Second post", User = new UserProfile() { UserName = "cvlad" } },
+                new Post { PostId = 3, UserId = 1, CreatedAt = DateTime.Now, Title = "Third post", UrlTitle = "third-post", Content = "Content of the Third post", User = new UserProfile() { UserName = "cvlad" } },
+                new Post { PostId = 4, UserId = 2, CreatedAt = DateTime.Now.Subtract(TimeSpan.FromDays(2)), Title = "Fourth post", UrlTitle = "fourth-post", Content = "Content of the Fourth post", User = new UserProfile() { UserName = "cvlad" } }
             };
 
             var context = new Mock<IContext>();
