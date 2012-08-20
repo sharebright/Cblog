@@ -13,7 +13,8 @@
 
     <div ng-class="{error: postEditForm.content.$invalid}">
         <label>Content</label>
-        <textarea name="content" ng-model="post.Content"></textarea>
+        <textarea name="content" ng-model="post.Content" ng-change="updatePreview()" rows="20" cols="80"></textarea>
+        <aside><div ng-bind-html="content"></div></aside>
     </div>
 
     <a href="#/">Cancel</a>

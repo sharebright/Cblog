@@ -50,6 +50,8 @@
     <Compile Include="FormattedPost.cs" />
     <Compile Include="IBlogService.cs" />
     <Compile Include="BlogService.cs" />
+    <Compile Include="IMarkdownService.cs" />
+    <Compile Include="MarkdownService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿angular.module('posts', ['postdb'])
+﻿angular.module('posts', ['ngSanitize', 'postdb'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/',              { controller: PostsListCtrl, templateUrl: '/PostAdmin/List' })
@@ -11,12 +11,13 @@ function PostsListCtrl($scope, PostDb) {
     $scope.posts = PostDb.query();
 }
 
-function PostsEditCtrl($scope, $location, $routeParams, PostDb) {
+function PostsEditCtrl($scope, $location, $routeParams, $http, PostDb) {
     var self = this;
 
     PostDb.get({ id: $routeParams.postId }, function (post) {
         self.original = post;
         $scope.post = new PostDb(self.original);
+        $scope.updatePreview();
     });
 
     $scope.isClean = function() {
@@ -34,12 +35,23 @@ function PostsEditCtrl($scope, $location, $routeParams, PostDb) {
             $location.path('/');
         });
     };
+
+    $scope.updatePreview = function () {
+        $http.get('/api/Markdown?md=' + escape($scope.post.Content)).success(function (data) {
+            $scope.content = data.substring(1, data.length - 1).replace(/\\n/g, '');
+        });
+    }
 }
 
-function PostsCreateCtrl($scope, $location, PostDb) {
+function PostsCreateCtrl($scope, $location, $http, PostDb) {
     $scope.save = function () {
         PostDb.save($scope.post, function (post) {
             $location.path('/');
         });
     };
+    $scope.updatePreview = function () {
+        $http.get('/api/Markdown?md=' + escape($scope.post.Content)).success(function (data) {
+            $scope.content = data.substring(1, data.length - 1).replace(/\\n/g, '');
+        });
+    }
 }
