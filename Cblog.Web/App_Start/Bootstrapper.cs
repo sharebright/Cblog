@@ -10,6 +10,7 @@ namespace Cblog.Web
     using System.Web.Mvc;
     using Cblog.Model;
     using Cblog.Model.Models;
+    using Cblog.Service;
     using Microsoft.Practices.Unity;
     using Unity.Mvc3;
 
@@ -31,6 +32,7 @@ namespace Cblog.Web
             
             // e.g. container.RegisterType<ITestService, TestService>();            
             container.RegisterType<IContext, CblogContext>();
+            container.RegisterType<IBlogService, BlogService>();
 
             return container;
         }

@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using Cblog.Service;
+﻿// ----------------------------------------------------------------------
+// <copyright file="MarkdownController.cs" company="">
+//  MarkdownController
+// </copyright>
+// <author>Vladimir Ciobanu</author>
+// ----------------------------------------------------------------------
 
 namespace Cblog.Web.Controllers
 {
+    using System.Web.Http;
+    using Cblog.Service;
+
     public class MarkdownController : ApiController
     {
         public MarkdownController() : this(null)

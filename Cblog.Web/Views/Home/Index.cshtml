@@ -1,14 +1,16 @@
-﻿@{
+﻿@model IEnumerable<Cblog.Service.FormattedPost>
+@{
     ViewBag.Title = "Index";
     ViewBag.NgApp = "home";
 }
 
 <h2>Posts</h2>
 
-<div ng-view></div>
-
-@section scripts {
-    @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/Scripts/Home/home.js")
-    @Scripts.Render("~/Scripts/Home/blogdb.js")
+@foreach (var post in Model)
+{
+<article>  
+    <h1>@Html.ActionLink(post.Title, "blog", new { id = post.Id } )</h1>
+    <div>Posted by @post.Author at @post.Date</div>
+    @Html.Raw(post.Content)
+</article>
 }

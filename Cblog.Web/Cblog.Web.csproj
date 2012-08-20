@@ -262,8 +262,6 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\Home\blogdb.js" />
-    <Content Include="Scripts\Home\home.js" />
     <Content Include="Scripts\i18n\angular-locale_am-et.js" />
     <Content Include="Scripts\i18n\angular-locale_am.js" />
     <Content Include="Scripts\i18n\angular-locale_ar-eg.js" />
@@ -435,7 +433,6 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Scripts\PostAdmin\markdowndb.js" />
     <Content Include="Scripts\PostAdmin\postdb.js" />
     <Content Include="Scripts\PostAdmin\posts.js" />
     <Content Include="Web.config" />
@@ -471,7 +468,6 @@
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Read.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -481,7 +477,7 @@
     <Content Include="Views\PostAdmin\List.cshtml" />
     <Content Include="Views\PostAdmin\Edit.cshtml" />
     <Content Include="Views\PostAdmin\Create.cshtml" />
-    <Content Include="Views\Home\List.cshtml" />
+    <Content Include="Views\Home\Blog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

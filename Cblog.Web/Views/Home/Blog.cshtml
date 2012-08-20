@@ -1,0 +1,12 @@
+﻿@model Cblog.Service.FormattedPost
+
+@{
+    ViewBag.Title = "Blog";
+}
+
+<h2>@Model.Title</h2>
+<div>Posted by @Model.Author at @Model.Date</div>
+
+<article>
+@Html.Raw(Model.Content)
+</article>

@@ -8,22 +8,31 @@
 namespace Cblog.Web.Controllers
 {
     using System.Web.Mvc;
+    using Cblog.Model;
+using Cblog.Service;
 
     public class HomeController : Controller
     {
+        public HomeController()
+            : this(null)
+        { }
+
+        public HomeController(IBlogService bs)
+        {
+            blogService_ = bs ?? DependencyResolver.Current.GetService<IBlogService>();
+        }
+
+
         public ActionResult Index()
         {
-            return View();
+            var blogs = blogService_.All();
+            return View(blogs);
         }
 
-        public ActionResult List()
+        public ActionResult Blog(int id)
         {
-            return View();
-        }
-
-        public ActionResult Read()
-        {
-            return View();
+            var post = blogService_.Single(id);
+            return View(post);
         }
 
         public ActionResult About()
@@ -32,5 +41,7 @@ namespace Cblog.Web.Controllers
 
             return View();
         }
+
+        private IBlogService blogService_;
     }
 }

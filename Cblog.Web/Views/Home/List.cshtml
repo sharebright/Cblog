@@ -1,9 +1,0 @@
-﻿@{
-    Layout = null;
-}
-
-<div ng-repeat="post in posts">
-    <h3><a href="#/blog/{{post.Id}}">{{post.Title}}</a></h3>
-    <div ng-bind-html="post.Content"></div>
-    <div>Posted at {{post.Date}} by {{post.Author}}</div>
-</div>
