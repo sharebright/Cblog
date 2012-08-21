@@ -11,6 +11,7 @@ namespace Cblog.Model.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Cblog.Model.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Cblog.Model.Models.CblogContext>
     {
