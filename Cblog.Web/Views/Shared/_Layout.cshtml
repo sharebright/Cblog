@@ -10,6 +10,7 @@
         <meta name="description" content="@ViewBag.Description" />
         <meta name="viewport" content="width=device-width" />
 
+        <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
     </head>
@@ -18,21 +19,40 @@
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
 
-        <header>
-            <nav>
-                @Html.Partial("_NavigationPartial")
-            </nav>
+        <header class="clearfix">
+            <h1><a href="/">Cvlad://Info</a></h1>
             <section>
-                @Html.Partial("_LoginPartial")
+                @*@Html.Partial("_LoginPartial")*@
             </section>
         </header>
 
-        <section id="body">
-            @RenderBody()
-        </section>
+        <div id="body" class="clearfix">
+            <section id="content">
+                @RenderBody()
+            </section>
+            <aside>
+                <section id="about">
+                    <h3>About me</h3>
+                    
+                    <p>Hello. I'm <b>Vladimir Ciobanu</b>, I'm a web developer and tehnology enthusiast. I work for <a href="http://www.teamnet.ro">Teamnet</a> in Bucharest, Romania, <b>but this blog, its contents and opinions are my own.</b></p>
+                    <p>If you want to find <b>more about me</b> and what I've done in the past, please check out my <a href="http://bartaz.github.com/impress.js/#/bored">impress.js</a>-powered <b><a href="#">resume</a></b>.</p>
+                    <p>You can follow me on <a href="http://twitter.com/cvlad">twitter</a>.</p>
+                </section>
+                <section id="blogs">
+                    <h3>Blogs I follow</h3>
+                    <ul>
+                        <li><a href="http://www.hanselman.com/">Scott Hanselman's Computer Zen</a></li>
+                        <li><a href="http://blog.cwa.me.uk/">Chris Alcock's Morning Brew</a></li>
+                        <li><a href="http://haacked.com">Phil Haack's haacked</a></li>
+                        <li><a href="http://www.codinghorror.com">Jeff Atwood's Coding Horror</a></li>
+                        <li><a href="http://herbsutter.com/">Herb Sutter's Mill</a></li>
+                    </ul>
+                </section>
+            </aside>
+        </div>
 
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+            <p>&copy; @DateTime.Now.Year - Vladimir Ciobanu</p>
         </footer>
 
         @Scripts.Render("~/bundles/jquery")

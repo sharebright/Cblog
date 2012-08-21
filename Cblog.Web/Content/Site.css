@@ -105,21 +105,110 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body, ul {
+    margin: 0;
+    font-family: Arial, Helvetica, Sans-Serif;
+}
+
+a {
+    color: #0f760a;
+    text-decoration: none;
+}
+    a:hover {
+        color: #000;
+    }
+    a:visited {
+        color: #0f760a;
+    }
+
+header {
+    background-color: #c1cbba;
+    margin: 0 auto;
+    padding: 0.52631578947368% 0;
+    width: 100%;
+    border-top: 4px solid #000;
+    border-bottom: 2px solid #535252;
+}
+    header h1 {
+        float: left;
+        width: 15%;
+        margin-left: 15%;
+        font-family: 'Rock Salt', cursive;
+    }
+        header h1 a {
+            text-decoration: none;
+            color: #000;
+        }
+        header h1 a:visited {
+            color: #000;
+        }
+    header section {
+        float: right;
+        margin-right: 20%;
+        width: 15%;
+    }
+        header section ul li {
+            list-style: none;
+            display: inline;
+            padding-right: 4%;
+        }
+            header section ul li form {
+                display: inline;
+            }
+        header section a {
+            color: #0f760a;
+        }
+        header section a:hover {
+            color: #000;
+        }
+        header section a:visited {
+            color: #0f760a;
+        }
+
+#body {
+    max-width: 1300px;
+    min-height: 500px;
+    margin: 0 auto;
+}
+    #body #content {
+        float: left;
+        width: 68%;
+        margin: 0 2em;
+    }
+        #body #content article {
+            margin-bottom: 4em;
+            border-bottom: 2px groove #0f760a;
+            border-bottom-left-radius: 16px;
+        }
+            #body #content article address {
+                margin-top: 0.5em;
+                text-align: right;
+                color: #9c9d9c;
+            }
+    #body aside {
+        width: 20%;
+        float: left;
+        margin-left: 2em;
+        border-left: 1px solid #999;
+        padding-left: 1em;
+    }
+        #body aside section {
+            margin-top: 4em;
+        }
+        #body aside #about {
+            margin-top: 0;
+        }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+footer {
+    background-color: #c1cbba;
+    margin: 0 auto;
+    padding: 0.52631578947368% 0;
+    width: 100%;
+}
+    footer p {
+        margin-left: 10%;
+    }
 
 /* ==========================================================================
    Helper classes
@@ -216,11 +305,36 @@ textarea {
 
 @media only screen and (min-width: 35em) {
     /* Style adjustments for viewports that meet the condition */
+    /*header h1 {
+        font-size: 24px;
+        margin-left: 7px;
+    }
+
+    #body aside {
+        display: none;
+    }
+
+    #body #content {
+        width: 90%;
+        margin: 0 5px;
+    }*/
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (min-resolution: 144dpi) {
-    /* Style adjustments for high resolution devices */
+    /* Style adjustments for high resolution devices */ 
+    header h1 {
+        font-size: 24px;
+        margin-left: 7px;
+    }
+        #body aside {
+        display: none;
+    }
+
+    #body #content {
+        width: 90%;
+        margin: 0 5px;
+    }
 }
 
 /* ==========================================================================

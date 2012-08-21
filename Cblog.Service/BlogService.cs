@@ -44,7 +44,7 @@ namespace Cblog.Service
                 Title = p.Title,
                 Slug = p.UrlTitle,
                 Author = p.User.UserName,
-                Date = p.CreatedAt.ToShortDateString(),
+                Date = p.CreatedAt.ToString("f"),
                 Content = markdown_.Transform(p.Content)
             };
             return fp;

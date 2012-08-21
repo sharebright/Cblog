@@ -4,13 +4,11 @@
     ViewBag.NgApp = "home";
 }
 
-<h2>Posts</h2>
-
 @foreach (var post in Model)
 {
 <article>  
-    <h1>@Html.ActionLink(post.Title, "blog", new { slug = post.Slug} )</h1>
-    <div>Posted by @post.Author at @post.Date</div>
+    <h2>@Html.ActionLink(post.Title, "blog", new { slug = post.Slug} )</h2>
     @Html.Raw(post.Content)
+    <address>Posted by @post.Author at @post.Date</address>
 </article>
 }
