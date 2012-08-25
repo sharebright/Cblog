@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------
-// <copyright file="MembershipMap.cs" company="">
+// <copyright file="MembershipMap.cs" company="cvlad">
 //  MembershipMap
 // </copyright>
 // <author>Vladimir Ciobanu</author>
@@ -10,8 +10,14 @@ namespace Cblog.Model.Models.Mapping
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.ModelConfiguration;
 
+    /// <summary>
+    /// The membership map.
+    /// </summary>
     public class MembershipMap : EntityTypeConfiguration<Membership>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MembershipMap"/> class.
+        /// </summary>
         public MembershipMap()
         {
             // Primary Key

@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------
-// <copyright file="UserProfileMap.cs" company="">
+// <copyright file="UserProfileMap.cs" company="cvlad">
 //  UserProfileMap
 // </copyright>
 // <author>Vladimir Ciobanu</author>
@@ -7,11 +7,16 @@
 
 namespace Cblog.Model.Models.Mapping
 {
-    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.ModelConfiguration;
 
+    /// <summary>
+    /// The user profile map.
+    /// </summary>
     public class UserProfileMap : EntityTypeConfiguration<UserProfile>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserProfileMap"/> class.
+        /// </summary>
         public UserProfileMap()
         {
             // Primary Key

@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="PostMap.cs" company="">
+// <copyright file="PostMap.cs" company="cvlad">
 //  PostMap
 // </copyright>
 // <author>Vladimir Ciobanu</author>
@@ -7,11 +7,16 @@
 
 namespace Cblog.Model.Models.Mapping
 {
-    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.ModelConfiguration;
 
+    /// <summary>
+    /// The post map.
+    /// </summary>
     public class PostMap : EntityTypeConfiguration<Post>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostMap"/> class.
+        /// </summary>
         public PostMap()
         {
             // Primary key

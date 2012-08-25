@@ -322,7 +322,9 @@ img {
  * Corrects overflow displayed oddly in IE 9.
  */
 
+/* ReSharper disable UnknownHtmlTag */
 svg:not(:root) {
+/* ReSharper restore UnknownHtmlTag */
     overflow: hidden;
 }
 

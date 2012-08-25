@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------
-// <copyright file="RoleMap.cs" company="">
+// <copyright file="RoleMap.cs" company="cvlad">
 //  RoleMap
 // </copyright>
 // <author>Vladimir Ciobanu</author>
@@ -7,11 +7,16 @@
 
 namespace Cblog.Model.Models.Mapping
 {
-    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.ModelConfiguration;
 
+    /// <summary>
+    /// The role map.
+    /// </summary>
     public class RoleMap : EntityTypeConfiguration<Role>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RoleMap"/> class.
+        /// </summary>
         public RoleMap()
         {
             // Primary Key

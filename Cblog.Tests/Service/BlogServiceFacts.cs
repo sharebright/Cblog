@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="BlogServiceFacts.cs" company="">
+// <copyright file="BlogServiceFacts.cs" company="cvlad">
 //  BlogServiceFacts
 // </copyright>
 // <author>Vladimir Ciobanu</author>
@@ -8,6 +8,7 @@
 namespace Cblog.Tests.Service
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Cblog.Model;
     using Cblog.Model.Models;
@@ -17,18 +18,24 @@ namespace Cblog.Tests.Service
     using Moq;
     using Xunit;
 
+    /// <summary>
+    /// The blog service facts.
+    /// </summary>
     public class BlogServiceFacts
     {
+        /// <summary>
+        /// The BlogService.Single should return a single post.
+        /// </summary>
         [Fact]
-        public void single_should_return_a_single_post()
+        public void Single_should_return_a_single_post()
         {
             // Arrange
             var fakeBlogs = new FakeDbSet<Post>
             {
-                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now, Title = "First post", UrlTitle = "first-post", Content = "Content of the First post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 2, UserId = 1, CreatedAt = DateTime.Now, Title = "Second post", UrlTitle = "second-post", Content = "Content of the Second post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 3, UserId = 1, CreatedAt = DateTime.Now, Title = "Third post", UrlTitle = "third-post", Content = "Content of the Third post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 4, UserId = 2, CreatedAt = DateTime.Now, Title = "Fourth post", UrlTitle = "fourth-post",  Content = "Content of the Fourth post", User = new UserProfile() { UserName = "cvlad" } }
+                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now, Title = "First post", UrlTitle = "first-post", Content = "Content of the First post", User = new UserProfile { UserName = "cvlad" } },
+                new Post { PostId = 2, UserId = 1, CreatedAt = DateTime.Now, Title = "Second post", UrlTitle = "second-post", Content = "Content of the Second post", User = new UserProfile { UserName = "cvlad" } },
+                new Post { PostId = 3, UserId = 1, CreatedAt = DateTime.Now, Title = "Third post", UrlTitle = "third-post", Content = "Content of the Third post", User = new UserProfile { UserName = "cvlad" } },
+                new Post { PostId = 4, UserId = 2, CreatedAt = DateTime.Now, Title = "Fourth post", UrlTitle = "fourth-post",  Content = "Content of the Fourth post", User = new UserProfile { UserName = "cvlad" } }
             };
             var expected = fakeBlogs.ElementAt(1);
 
@@ -48,16 +55,19 @@ namespace Cblog.Tests.Service
             blog.Author.Should().Be(expected.User.UserName);
         }
 
+        /// <summary>
+        /// The All_should_return_all_posts.
+        /// </summary>
         [Fact]
-        public void all_should_return_all_posts()
+        public void All_should_return_all_posts()
         {
             // Arrange
             var fakeBlogs = new FakeDbSet<Post>
             {
-                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now, Title = "First post", UrlTitle = "first-post", Content = "Content of the First post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 2, UserId = 1, CreatedAt = DateTime.Now, Title = "Second post", UrlTitle = "second-post", Content = "Content of the Second post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 3, UserId = 1, CreatedAt = DateTime.Now, Title = "Third post", UrlTitle = "third-post", Content = "Content of the Third post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 4, UserId = 2, CreatedAt = DateTime.Now, Title = "Fourth post", UrlTitle = "fourth-post",  Content = "Content of the Fourth post", User = new UserProfile() { UserName = "cvlad" } }
+                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now, Title = "First post", UrlTitle = "first-post", Content = "Content of the First post", User = new UserProfile { UserName = "cvlad" } },
+                new Post { PostId = 2, UserId = 1, CreatedAt = DateTime.Now, Title = "Second post", UrlTitle = "second-post", Content = "Content of the Second post", User = new UserProfile { UserName = "cvlad" } },
+                new Post { PostId = 3, UserId = 1, CreatedAt = DateTime.Now, Title = "Third post", UrlTitle = "third-post", Content = "Content of the Third post", User = new UserProfile { UserName = "cvlad" } },
+                new Post { PostId = 4, UserId = 2, CreatedAt = DateTime.Now, Title = "Fourth post", UrlTitle = "fourth-post",  Content = "Content of the Fourth post", User = new UserProfile { UserName = "cvlad" } }
             };
 
             var context = new Mock<IContext>();
@@ -72,15 +82,18 @@ namespace Cblog.Tests.Service
             blogs.Count().Should().Be(fakeBlogs.Count());
         }
 
+        /// <summary>
+        /// The service_should_interpret_markdown.
+        /// </summary>
         [Fact]
-        public void service_should_interpret_markdown()
+        public void Service_should_interpret_markdown()
         {
             // Arrange
-            var markdownString = "## Header here\r\nAnd some list after\r\n*one\r\n*two\r\nDone.";
+            const string MarkdownString = "## Header here\r\nAnd some list after\r\n*one\r\n*two\r\nDone.";
 
             var fakeBlogs = new FakeDbSet<Post>
             {
-                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now, Title = "First post", UrlTitle = "first-post", Content = markdownString, User = new UserProfile() { UserName = "cvlad" } },
+                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now, Title = "First post", UrlTitle = "first-post", Content = MarkdownString, User = new UserProfile { UserName = "cvlad" } },
             };
 
             var markdown = new Markdown();
@@ -99,16 +112,19 @@ namespace Cblog.Tests.Service
             actual.Content.Should().Be(expectedContent);
         }
 
+        /// <summary>
+        /// The All_should_be_ordered_by_date_descending.
+        /// </summary>
         [Fact]
-        public void all_should_be_ordered_by_date_descending()
+        public void All_should_be_ordered_by_date_descending()
         {
             // Arrange
             var fakeBlogs = new FakeDbSet<Post>
             {
-                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now.Subtract(TimeSpan.FromDays(5)), Title = "First post", UrlTitle = "first-post", Content = "Content of the First post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 2, UserId = 1, CreatedAt = DateTime.Now.Subtract(TimeSpan.FromDays(1)), Title = "Second post", UrlTitle = "second-post", Content = "Content of the Second post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 3, UserId = 1, CreatedAt = DateTime.Now, Title = "Third post", UrlTitle = "third-post", Content = "Content of the Third post", User = new UserProfile() { UserName = "cvlad" } },
-                new Post { PostId = 4, UserId = 2, CreatedAt = DateTime.Now.Subtract(TimeSpan.FromDays(2)), Title = "Fourth post", UrlTitle = "fourth-post", Content = "Content of the Fourth post", User = new UserProfile() { UserName = "cvlad" } }
+                new Post { PostId = 1, UserId = 1, CreatedAt = DateTime.Now.Subtract(TimeSpan.FromDays(5)), Title = "First post", UrlTitle = "first-post", Content = "Content of the First post", User = new UserProfile { UserName = "cvlad" } },
+                new Post { PostId = 2, UserId = 1, CreatedAt = DateTime.Now.Subtract(TimeSpan.FromDays(1)), Title = "Second post", UrlTitle = "second-post", Content = "Content of the Second post", User = new UserProfile { UserName = "cvlad" } },
+                new Post { PostId = 3, UserId = 1, CreatedAt = DateTime.Now, Title = "Third post", UrlTitle = "third-post", Content = "Content of the Third post", User = new UserProfile { UserName = "cvlad" } },
+                new Post { PostId = 4, UserId = 2, CreatedAt = DateTime.Now.Subtract(TimeSpan.FromDays(2)), Title = "Fourth post", UrlTitle = "fourth-post", Content = "Content of the Fourth post", User = new UserProfile { UserName = "cvlad" } }
             };
 
             var context = new Mock<IContext>();
@@ -122,10 +138,11 @@ namespace Cblog.Tests.Service
             // Assert
             // TODO: fix.
             // for some reason, actual.Should().ContainInOrder seems to not work.
-            actual.ElementAt(0).Id.Should().Be(3);
-            actual.ElementAt(1).Id.Should().Be(2);
-            actual.ElementAt(2).Id.Should().Be(4);
-            actual.ElementAt(3).Id.Should().Be(1);
+            var formattedPosts = actual as List<FormattedPost> ?? actual.ToList();
+            formattedPosts.ElementAt(0).Id.Should().Be(3);
+            formattedPosts.ElementAt(1).Id.Should().Be(2);
+            formattedPosts.ElementAt(2).Id.Should().Be(4);
+            formattedPosts.ElementAt(3).Id.Should().Be(1);
         }
     }
 }

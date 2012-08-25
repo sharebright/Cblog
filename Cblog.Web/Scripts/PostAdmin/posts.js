@@ -1,5 +1,6 @@
 ﻿angular.module('posts', ['ngSanitize', 'postdb'])
     .config(function ($routeProvider) {
+        "use strict";
         $routeProvider
             .when('/',              { controller: PostsListCtrl, templateUrl: '/PostAdmin/List' })
             .when('/edit/:postId',  { controller: PostsEditCtrl, templateUrl: '/PostAdmin/Edit' })
@@ -8,10 +9,12 @@
     });
 
 function PostsListCtrl($scope, PostDb) {
+    "use strict";
     $scope.posts = PostDb.query();
 }
 
 function PostsEditCtrl($scope, $location, $routeParams, $http, PostDb) {
+    "use strict";
     var self = this;
 
     PostDb.get({ id: $routeParams.postId }, function (post) {
@@ -36,11 +39,11 @@ function PostsEditCtrl($scope, $location, $routeParams, $http, PostDb) {
         });
     };
 
-    $scope.updatePreview = function () {
-        $http.get('/api/Markdown?md=' + escape($scope.post.Content)).success(function (data) {
+    $scope.updatePreview = function() {
+        $http.get('/api/Markdown?md=' + window.escape($scope.post.Content)).success(function(data) {
             $scope.content = data.substring(1, data.length - 1).replace(/\\n/g, '');
         });
-    }
+    };
 }
 
 function PostsCreateCtrl($scope, $location, $http, PostDb) {
@@ -49,9 +52,9 @@ function PostsCreateCtrl($scope, $location, $http, PostDb) {
             $location.path('/');
         });
     };
-    $scope.updatePreview = function () {
-        $http.get('/api/Markdown?md=' + escape($scope.post.Content)).success(function (data) {
+    $scope.updatePreview = function() {
+        $http.get('/api/Markdown?md=' + escape($scope.post.Content)).success(function(data) {
             $scope.content = data.substring(1, data.length - 1).replace(/\\n/g, '');
         });
-    }
+    };
 }

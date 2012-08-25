@@ -1,17 +1,25 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="BundleConfig.cs" company="">
+// <copyright file="BundleConfig.cs" company="cvlad">
 //  BundleConfig
 // </copyright>
 // <author>Vladimir Ciobanu</author>
 // ----------------------------------------------------------------------
 
-namespace Cblog.Web
+namespace Cblog.Web.App_Start
 {
     using System.Web.Optimization;
 
+    /// <summary>
+    /// The bundle config.
+    /// </summary>
     public class BundleConfig
     {
-        // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
+        /// <summary>
+        /// Registers the CSS and Javascript bundles.
+        /// </summary>
+        /// <param name="bundles">
+        /// The bundle collection.
+        /// </param>
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

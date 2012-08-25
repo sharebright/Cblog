@@ -1,10 +1,24 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="201208191750527_SimpleMembership.cs" company="cvlad">
+//   SimpleMembership
+// </copyright>
+// <summary>
+//   The simple membership.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace Cblog.Model.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
+    /// <summary>
+    /// The simple membership.
+    /// </summary>
     public partial class SimpleMembership : DbMigration
     {
+        /// <summary>
+        /// The up.
+        /// </summary>
         public override void Up()
         {
             CreateTable(
@@ -65,20 +79,22 @@ namespace Cblog.Model.Migrations
                 .ForeignKey("dbo.UserProfile", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.RoleId)
                 .Index(t => t.UserId);
-            
         }
-        
+
+        /// <summary>
+        /// The down.
+        /// </summary>
         public override void Down()
         {
-            DropIndex("dbo.webpages_UsersInRoles", new[] { "UserId" });
-            DropIndex("dbo.webpages_UsersInRoles", new[] { "RoleId" });
-            DropForeignKey("dbo.webpages_UsersInRoles", "UserId", "dbo.UserProfile");
-            DropForeignKey("dbo.webpages_UsersInRoles", "RoleId", "dbo.webpages_Roles");
-            DropTable("dbo.webpages_UsersInRoles");
-            DropTable("dbo.webpages_OAuthMembership");
-            DropTable("dbo.webpages_Membership");
-            DropTable("dbo.webpages_Roles");
-            DropTable("dbo.UserProfile");
+            this.DropIndex("dbo.webpages_UsersInRoles", new[] { "UserId" });
+            this.DropIndex("dbo.webpages_UsersInRoles", new[] { "RoleId" });
+            this.DropForeignKey("dbo.webpages_UsersInRoles", "UserId", "dbo.UserProfile");
+            this.DropForeignKey("dbo.webpages_UsersInRoles", "RoleId", "dbo.webpages_Roles");
+            this.DropTable("dbo.webpages_UsersInRoles");
+            this.DropTable("dbo.webpages_OAuthMembership");
+            this.DropTable("dbo.webpages_Membership");
+            this.DropTable("dbo.webpages_Roles");
+            this.DropTable("dbo.UserProfile");
         }
     }
 }

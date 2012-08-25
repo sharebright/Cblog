@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------
-// <copyright file="Configuration.cs" company="">
+// <copyright file="Configuration.cs" company="cvlad">
 //  Configuration
 // </copyright>
 // <author>Vladimir Ciobanu</author>
@@ -7,33 +7,40 @@
 
 namespace Cblog.Model.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
-    using Cblog.Model.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Cblog.Model.Models.CblogContext>
+    /// <summary>
+    /// The configuration.
+    /// </summary>
+    internal sealed class Configuration : DbMigrationsConfiguration<Models.CblogContext>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Configuration"/> class.
+        /// </summary>
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Cblog.Model.Models.CblogContext context)
+        /// <summary>
+        /// The seed.
+        /// </summary>
+        /// <param name="context">
+        /// The context.
+        /// </param>
+        protected override void Seed(Models.CblogContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            // This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            // You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            // to avoid creating duplicate seed data. E.g.
+            // 
+            // context.People.AddOrUpdate(
+            // p => p.FullName,
+            // new Person { FullName = "Andrew Peters" },
+            // new Person { FullName = "Brice Lambson" },
+            // new Person { FullName = "Rowan Miller" }
+            // );
         }
     }
 }

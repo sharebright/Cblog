@@ -1,40 +1,54 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="AuthConfig.cs" company="">
+// <copyright file="AuthConfig.cs" company="cvlad">
 //  AuthConfig
 // </copyright>
 // <author>Vladimir Ciobanu</author>
 // ----------------------------------------------------------------------
 
-namespace Cblog.Web
+namespace Cblog.Web.App_Start
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+
     using Cblog.Web.Models;
+
     using WebMatrix.WebData;
 
+    /// <summary>
+    /// The auth config.
+    /// </summary>
     public static class AuthConfig
     {
+        /// <summary>
+        /// Registers OAuth providers.
+        /// </summary>
         public static void RegisterAuth()
         {
             // To let users of this site log in using their accounts from other sites such as Microsoft, Facebook, and Twitter,
             // you must update this site. For more information visit http://go.microsoft.com/fwlink/?LinkID=252166
 
-            //OAuthWebSecurity.RegisterMicrosoftClient(
-            //    clientId: "",
-            //    clientSecret: "");
+            // OAuthWebSecurity.RegisterMicrosoftClient(
+            // clientId: "",
+            // clientSecret: "");
 
-            //OAuthWebSecurity.RegisterTwitterClient(
-            //    consumerKey: "",
-            //    consumerSecret: "");
+            // OAuthWebSecurity.RegisterTwitterClient(
+            // consumerKey: "",
+            // consumerSecret: "");
 
-            //OAuthWebSecurity.RegisterFacebookClient(
-            //    appId: "",
-            //    appSecret: "");
+            // OAuthWebSecurity.RegisterFacebookClient(
+            // appId: "",
+            // appSecret: "");
 
-            //OAuthWebSecurity.RegisterGoogleClient();
+            // OAuthWebSecurity.RegisterGoogleClient();
         }
 
+        /// <summary>
+        /// Initializes membership.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when the membership cannot be initialised. Check settings.
+        /// </exception>
         public static void InitializeMembership()
         {
             Database.SetInitializer<UsersContext>(null);

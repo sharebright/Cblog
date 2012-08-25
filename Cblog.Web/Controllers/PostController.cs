@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="PostController.cs" company="">
+// <copyright file="PostController.cs" company="cvlad">
 //  PostController
 // </copyright>
 // <author>Vladimir Ciobanu</author>
@@ -9,42 +9,79 @@ namespace Cblog.Web.Controllers
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
     using System.Data.Entity.Infrastructure;
-    using System.Linq;
     using System.Net;
     using System.Net.Http;
     using System.Web.Http;
-    using Cblog.Model;
     using Cblog.Model.Models;
     using Cblog.Service;
-    using Cblog.Web.Filters;
 
+    /// <summary>
+    /// The post controller.
+    /// </summary>
     public class PostController : ApiController
     {
-        private IPostService postService_;
+        /// <summary>
+        /// The post service_.
+        /// </summary>
+        private readonly IPostService postService_;
 
-        public PostController() : this(null)
-        { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostController"/> class.
+        /// </summary>
+        public PostController()
+            : this(null)
+        {
+        }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostController"/> class.
+        /// </summary>
+        /// <param name="ps">
+        /// The ps.
+        /// </param>
         public PostController(IPostService ps)
         {
-            postService_ = ps ?? new PostService(new CblogContext());
+            this.postService_ = ps ?? new PostService(new CblogContext());
         }
 
-        // GET api/Post
+        /// <summary>
+        /// The get posts.
+        /// </summary>
+        /// <returns>
+        /// The System.Collections.Generic.IEnumerable`1[T -&gt; Cblog.Model.Models.Post].
+        /// </returns>
         public IEnumerable<Post> GetPosts()
         {
-            return postService_.GetPosts();
+            return this.postService_.GetPosts();
         }
 
-        // GET api/Post/5
+        /// <summary>
+        /// The get post.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The Cblog.Model.Models.Post.
+        /// </returns>
         public Post GetPost(int id)
         {
-            return postService_.GetPost(id);
+            return this.postService_.GetPost(id);
         }
 
-        // PUT api/Post/5
+        /// <summary>
+        /// The put post.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <param name="post">
+        /// The post.
+        /// </param>
+        /// <returns>
+        /// The System.Net.Http.HttpResponseMessage.
+        /// </returns>
         [Authorize(Roles = "admin")]
         public HttpResponseMessage PutPost(int id, Post post)
         {
@@ -52,7 +89,7 @@ namespace Cblog.Web.Controllers
             {
                 try
                 {
-                    postService_.Update(id, post);
+                    this.postService_.Update(id, post);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -61,37 +98,49 @@ namespace Cblog.Web.Controllers
 
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
+
+            return this.Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        // POST api/Post
+        /// <summary>
+        /// The post post.
+        /// </summary>
+        /// <param name="post">
+        /// The post.
+        /// </param>
+        /// <returns>
+        /// The System.Net.Http.HttpResponseMessage.
+        /// </returns>
         [Authorize(Roles = "admin")]
         public HttpResponseMessage PostPost(Post post)
         {
-            if (ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                postService_.Create(post, this.User.Identity.Name);
+                return this.Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, post);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = post.PostId }));
-                return response;
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
+            this.postService_.Create(post, this.User.Identity.Name);
+
+            var response = this.Request.CreateResponse(HttpStatusCode.Created, post);
+            response.Headers.Location = new Uri(this.Url.Link("DefaultApi", new { id = post.PostId }));
+            return response;
         }
 
-        // DELETE api/Post/5
+        /// <summary>
+        /// The delete post.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The System.Net.Http.HttpResponseMessage.
+        /// </returns>
         [Authorize(Roles = "admin")]
         public HttpResponseMessage DeletePost(int id)
         {
             try
             {
-                postService_.Delete(id);
+                this.postService_.Delete(id);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -101,9 +150,15 @@ namespace Cblog.Web.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        /// <summary>
+        /// The dispose.
+        /// </summary>
+        /// <param name="disposing">
+        /// The disposing.
+        /// </param>
         protected override void Dispose(bool disposing)
         {
-            postService_.Dispose();
+            this.postService_.Dispose();
             base.Dispose(disposing);
         }
     }

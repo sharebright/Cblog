@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------
-// <copyright file="OAuthMembershipMap.cs" company="">
+// <copyright file="OAuthMembershipMap.cs" company="cvlad">
 //  OAuthMembershipMap
 // </copyright>
 // <author>Vladimir Ciobanu</author>
@@ -7,11 +7,16 @@
 
 namespace Cblog.Model.Models.Mapping
 {
-    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.ModelConfiguration;
 
+    /// <summary>
+    /// The o auth membership map.
+    /// </summary>
     public class OAuthMembershipMap : EntityTypeConfiguration<OAuthMembership>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OAuthMembershipMap"/> class.
+        /// </summary>
         public OAuthMembershipMap()
         {
             // Primary Key

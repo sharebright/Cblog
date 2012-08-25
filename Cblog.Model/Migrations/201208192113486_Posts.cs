@@ -1,10 +1,25 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="201208192113486_Posts.cs" company="cvlad">
+//   Posts
+// </copyright>
+// <summary>
+//   The posts.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
 namespace Cblog.Model.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
+    /// <summary>
+    /// The posts.
+    /// </summary>
     public partial class Posts : DbMigration
     {
+        /// <summary>
+        /// The up.
+        /// </summary>
         public override void Up()
         {
             CreateTable(
@@ -20,14 +35,16 @@ namespace Cblog.Model.Migrations
                 .PrimaryKey(t => t.PostId)
                 .ForeignKey("dbo.UserProfile", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
-            
         }
-        
+
+        /// <summary>
+        /// The down.
+        /// </summary>
         public override void Down()
         {
-            DropIndex("dbo.Posts", new[] { "UserId" });
-            DropForeignKey("dbo.Posts", "UserId", "dbo.UserProfile");
-            DropTable("dbo.Posts");
+            this.DropIndex("dbo.Posts", new[] { "UserId" });
+            this.DropForeignKey("dbo.Posts", "UserId", "dbo.UserProfile");
+            this.DropTable("dbo.Posts");
         }
     }
 }

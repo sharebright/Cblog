@@ -1,5 +1,5 @@
 ﻿// ----------------------------------------------------------------------
-// <copyright file="BlogController.cs" company="">
+// <copyright file="BlogController.cs" company="cvlad">
 //  BlogController
 // </copyright>
 // <author>Vladimir Ciobanu</author>
@@ -7,51 +7,69 @@
 
 namespace Cblog.Web.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Web.Http;
     using Cblog.Model.Models;
     using Cblog.Service;
 
+    /// <summary>
+    /// The blog controller.
+    /// </summary>
     public class BlogController : ApiController
     {
+        /// <summary>
+        /// The service_.
+        /// </summary>
         private IBlogService service_;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BlogController"/> class.
+        /// </summary>
         public BlogController()
             : this(null)
-        { }
+        {
+        }
 
         // TODO: fix the DI stuff here.
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BlogController"/> class.
+        /// </summary>
+        /// <param name="bs">
+        /// The bs.
+        /// </param>
         public BlogController(IBlogService bs)
         {
-            service_ = bs ?? new BlogService(new CblogContext());
+            this.service_ = bs ?? new BlogService(new CblogContext());
         }
 
+        /// <summary>
+        /// The get blogs.
+        /// </summary>
+        /// <returns>
+        /// The System.Collections.Generic.IEnumerable`1[T -&gt; Cblog.Service.FormattedPost].
+        /// </returns>
         public IEnumerable<FormattedPost> GetBlogs()
         {
-            return service_.All();
+            return this.service_.All();
         }
 
-        //public FormattedPost GetBlog(int id)
-        //{
-        //    return service_.Single(id);
-        //}
-
+        /// <summary>
+        /// The dispose.
+        /// </summary>
+        /// <param name="disposing">
+        /// The disposing.
+        /// </param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (service_ != null)
+                if (this.service_ != null)
                 {
-                    service_.Dispose();
-                    service_ = null;
+                    this.service_.Dispose();
+                    this.service_ = null;
                 }
             }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
         }
     }
 }
