@@ -51,7 +51,9 @@ namespace Cblog.Web.Filters
         /// <summary>
         /// The simple membership initializer.
         /// </summary>
+// ReSharper disable ClassNeverInstantiated.Local
         private class SimpleMembershipInitializer
+// ReSharper restore ClassNeverInstantiated.Local
         {
             /// <summary>
             /// Initializes a new instance of the <see cref="SimpleMembershipInitializer"/> class.

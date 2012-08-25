@@ -105,6 +105,9 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.no-js, .lt-ie9, .lt-ie8, .lt-ie7 {
+}
+
 body, ul {
     margin: 0;
     font-family: Arial, Helvetica, Sans-Serif;
