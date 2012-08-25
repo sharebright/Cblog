@@ -9,11 +9,16 @@ angular.module('postdb', ['ngResource'])
                 get: { method: 'GET' },
                 update: { method: 'PUT' },
                 save: { method: 'POST' },
-                remove: { method: 'DELETE' }
+                destroy: { method: 'DELETE' }
             });
         PostDb.prototype.update = function (cb) {
             return PostDb.update({ id: this.PostId },
-                angular.extend({}, this, { PostId: this.PostId }), cb);
+                angular.extend({ }, this, { PostId: this.PostId }), cb);
+        };
+
+        PostDb.prototype.destroy = function (cb) {
+            return PostDb.destroy({ id: this.PostId },
+                angular.extend({ }, this, { PostId: this.PostId }), cb);
         };
 
         return PostDb;

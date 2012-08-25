@@ -7,6 +7,7 @@
 
 namespace Cblog.Web.App_Start
 {
+    using System.Web.Http;
     using System.Web.Mvc;
     using Cblog.Model;
     using Cblog.Model.Models;
@@ -22,12 +23,15 @@ namespace Cblog.Web.App_Start
         /// <summary>
         /// Initialises the DI container.
         /// </summary>
-        public static void Initialise()
+        /// <param name="config">
+        /// The config.
+        /// </param>
+        public static void Initialise(HttpConfiguration config)
         {
-            // TODO: make it work with WEB API as well.
             var container = BuildUnityContainer();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+            config.DependencyResolver = new IoCContainer(container);
         }
 
         /// <summary>
@@ -46,6 +50,8 @@ namespace Cblog.Web.App_Start
             // e.g. container.RegisterType<ITestService, TestService>();            
             container.RegisterType<IContext, CblogContext>();
             container.RegisterType<IBlogService, BlogService>();
+            container.RegisterType<IMarkdownService, MarkdownService>();
+            container.RegisterType<IPostService, PostService>();
 
             return container;
         }

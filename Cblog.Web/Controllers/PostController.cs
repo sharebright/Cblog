@@ -19,7 +19,7 @@ namespace Cblog.Web.Controllers
     /// <summary>
     /// The post controller.
     /// </summary>
-    public class PostController : ApiController
+    public class PostController : CblogApiController
     {
         /// <summary>
         /// The post service_.
@@ -42,7 +42,7 @@ namespace Cblog.Web.Controllers
         /// </param>
         public PostController(IPostService ps)
         {
-            this.postService_ = ps ?? new PostService(new CblogContext());
+            this.postService_ = ps ?? this.Resolve<IPostService>();
         }
 
         /// <summary>

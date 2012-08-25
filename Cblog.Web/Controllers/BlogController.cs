@@ -8,14 +8,12 @@
 namespace Cblog.Web.Controllers
 {
     using System.Collections.Generic;
-    using System.Web.Http;
-    using Cblog.Model.Models;
     using Cblog.Service;
 
     /// <summary>
     /// The blog controller.
     /// </summary>
-    public class BlogController : ApiController
+    public class BlogController : CblogApiController
     {
         /// <summary>
         /// The service_.
@@ -30,8 +28,6 @@ namespace Cblog.Web.Controllers
         {
         }
 
-        // TODO: fix the DI stuff here.
-
         /// <summary>
         /// Initializes a new instance of the <see cref="BlogController"/> class.
         /// </summary>
@@ -40,7 +36,7 @@ namespace Cblog.Web.Controllers
         /// </param>
         public BlogController(IBlogService bs)
         {
-            this.service_ = bs ?? new BlogService(new CblogContext());
+            this.service_ = bs ?? this.Resolve<IBlogService>();
         }
 
         /// <summary>

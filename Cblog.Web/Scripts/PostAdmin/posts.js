@@ -1,4 +1,4 @@
-﻿/*global window*/
+﻿/*jslint browser: true*/
 /*global angular*/
 
 function PostsListCtrl($scope, PostDb) {
@@ -33,7 +33,10 @@ function PostsEditCtrl($scope, $location, $routeParams, $http, PostDb) {
     };
 
     $scope.updatePreview = function () {
-        $http.get('/api/Markdown?md=' + window.escape($scope.post.Content)).success(function (data) {
+        $http.post(
+            '/api/Markdown',
+            "'" + $scope.post.Content.replace("'", "\\'") + "'"
+        ).success(function (data) {
             $scope.content = data.substring(1, data.length - 1).replace(/\\n/g, '');
         });
     };
@@ -47,7 +50,10 @@ function PostsCreateCtrl($scope, $location, $http, PostDb) {
         });
     };
     $scope.updatePreview = function () {
-        $http.get('/api/Markdown?md=' + window.escape($scope.post.Content)).success(function (data) {
+        $http.post(
+            '/api/Markdown',
+            "'" + $scope.post.Content.replace("'", "\\'") + "'"
+        ).success(function (data) {
             $scope.content = data.substring(1, data.length - 1).replace(/\\n/g, '');
         });
     };

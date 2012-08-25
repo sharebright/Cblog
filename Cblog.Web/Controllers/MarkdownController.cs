@@ -13,7 +13,7 @@ namespace Cblog.Web.Controllers
     /// <summary>
     /// The markdown controller.
     /// </summary>
-    public class MarkdownController : ApiController
+    public class MarkdownController : CblogApiController
     {
         /// <summary>
         /// The markdown service_.
@@ -36,7 +36,7 @@ namespace Cblog.Web.Controllers
         /// </param>
         public MarkdownController(IMarkdownService markdown)
         {
-            this.markdownService_ = markdown ?? new MarkdownService();
+            this.markdownService_ = markdown ?? this.Resolve<IMarkdownService>();
         }
 
         /// <summary>
@@ -49,6 +49,21 @@ namespace Cblog.Web.Controllers
         /// The System.String.
         /// </returns>
         public string GetMarkdown(string md)
+        {
+            return this.markdownService_.Transform(md);
+        }
+
+        /// <summary>
+        /// The post markdown.
+        /// </summary>
+        /// <param name="md">
+        /// The md.
+        /// </param>
+        /// <returns>
+        /// The System.String.
+        /// </returns>
+        [HttpPost]
+        public string PostMarkdown([FromBody]string md)
         {
             return this.markdownService_.Transform(md);
         }

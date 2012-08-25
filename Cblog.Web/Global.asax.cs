@@ -23,7 +23,7 @@ namespace Cblog.Web
         /// </summary>
         protected void Application_Start()
         {
-            Bootstrapper.Initialise();
+            Bootstrapper.Initialise(GlobalConfiguration.Configuration);
 
             AreaRegistration.RegisterAllAreas();
 
