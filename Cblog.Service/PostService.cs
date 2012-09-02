@@ -34,7 +34,6 @@ namespace Cblog.Service
         public PostService(IContext ctx)
         {
             this.context_ = ctx;
-            this.context_.Configuration.ProxyCreationEnabled = false;
         }
 
         /// <summary>

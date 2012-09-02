@@ -26,7 +26,7 @@ namespace Cblog.Web.Controllers
         /// <returns>
         /// The T.
         /// </returns>
-        public T Resolve<T>() where T : class
+        protected T Resolve<T>() where T : class
         {
             return GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(T)) as T;
         }

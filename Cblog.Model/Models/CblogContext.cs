@@ -29,6 +29,7 @@ namespace Cblog.Model.Models
         public CblogContext()
             : base("Name=CblogContext")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         /// <summary>

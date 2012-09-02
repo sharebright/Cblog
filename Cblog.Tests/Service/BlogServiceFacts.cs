@@ -53,6 +53,8 @@ namespace Cblog.Tests.Service
             blog.Date.Should().NotBeEmpty();
             blog.Content.Should().Be("<p>" + expected.Content + "</p>\n");
             blog.Author.Should().Be(expected.User.UserName);
+
+            context.Verify();
         }
 
         /// <summary>
@@ -80,6 +82,7 @@ namespace Cblog.Tests.Service
 
             // Assert
             blogs.Count().Should().Be(fakeBlogs.Count());
+            context.Verify();
         }
 
         /// <summary>
@@ -110,6 +113,7 @@ namespace Cblog.Tests.Service
 
             // Assert
             actual.Content.Should().Be(expectedContent);
+            context.Verify();
         }
 
         /// <summary>
@@ -143,6 +147,7 @@ namespace Cblog.Tests.Service
             formattedPosts.ElementAt(1).Id.Should().Be(2);
             formattedPosts.ElementAt(2).Id.Should().Be(4);
             formattedPosts.ElementAt(3).Id.Should().Be(1);
+            context.Verify();
         }
     }
 }

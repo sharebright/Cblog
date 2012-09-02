@@ -23,8 +23,7 @@ namespace Cblog.Web.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkdownController"/> class.
         /// </summary>
-        public MarkdownController()
-            : this(null)
+        public MarkdownController() : this(null)
         {
         }
 

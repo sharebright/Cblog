@@ -8,6 +8,7 @@
 namespace Cblog.Service
 {
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
     using Cblog.Model;
     using Cblog.Model.Models;
@@ -51,7 +52,7 @@ namespace Cblog.Service
         /// </returns>
         public FormattedPost Single(string slug)
         {
-            var post = this.context_.Posts.Single(p => p.UrlTitle == slug);
+            var post = this.context_.Posts.Include("User").Single(p => p.UrlTitle == slug);
             return this.FormatPost(post);
         }
 
@@ -63,7 +64,7 @@ namespace Cblog.Service
         /// </returns>
         public IEnumerable<FormattedPost> All()
         {
-            return this.context_.Posts.OrderByDescending(p => p.CreatedAt).AsEnumerable().Select(this.FormatPost);
+            return this.context_.Posts.Include("User").OrderByDescending(p => p.CreatedAt).AsEnumerable().Select(this.FormatPost);
         }
 
         /// <summary>
